@@ -31,4 +31,15 @@ public class Main{
         }
         System.out.println("\nFinal Passenger Bogie List:");
         System.out.println(passengerBogies);
+
+//===== UC3 =====
+        Set<String> bogieIds = new HashSet<>();
+        bogieIds.add("BG101");
+        bogieIds.add("BG102");
+        bogieIds.add("BG103");
+        bogieIds.add("BG101");
+        bogieIds.add("BG102");
+        System.out.println("\nBogie IDs (duplicates automatically removed):");
+        System.out.println(bogieIds);
+
     }}

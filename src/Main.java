@@ -62,5 +62,15 @@ public class Main{
         System.out.println("\nFinal Ordered Train Consist:");
         System.out.println(consist);
 
+//===== UC5 =====
+        System.out.println("\n=== UC5: Train Formation Using LinkedHashSet ===");
+        LinkedHashSet<String> formation=new LinkedHashSet<>();
+        formation.add("Engine");
+        formation.add("Sleeper");
+        formation.add("Cargo");
+        formation.add("Guard");
+        formation.add("Sleeper");
+        System.out.println("\nFinal Train Formation (Insertion Order Preserved, No Duplicates):");
+        System.out.println(formation);
 
     }}

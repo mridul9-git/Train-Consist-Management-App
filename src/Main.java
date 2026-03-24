@@ -73,4 +73,15 @@ public class Main{
         System.out.println("\nFinal Train Formation (Insertion Order Preserved, No Duplicates):");
         System.out.println(formation);
 
-    }}
+//===== UC6 =====
+        System.out.println("\n=== UC6: Bogie Capacity Mapping Using HashMap ===");
+        HashMap<String,Integer> bogieCapacity=new HashMap<>();
+        bogieCapacity.put("Sleeper",72);
+        bogieCapacity.put("AC Chair",60);
+        bogieCapacity.put("First Class",24);
+        System.out.println("\nBogie Capacity Details:");
+        for(Map.Entry<String,Integer> entry:bogieCapacity.entrySet()){
+            System.out.println(entry.getKey()+" -> Capacity: "+entry.getValue());
+        }
+    }
+}

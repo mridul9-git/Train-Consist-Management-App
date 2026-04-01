@@ -181,5 +181,15 @@ public class Main {
                 System.out.println(b.getName() + " -> Capacity: " + b.getCapacity());
             }
         }
+
+        //===== UC10 =====
+        System.out.println("\n=== UC10: Count Total Seats in Train (reduce) ===");
+
+        int totalSeats = bogies
+                .stream()
+                .map(b -> b.getCapacity())
+                .reduce(0, Integer::sum);
+
+        System.out.println("Total Seating Capacity of Train: " + totalSeats);
     }
 }

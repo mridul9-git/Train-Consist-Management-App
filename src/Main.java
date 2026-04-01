@@ -1,16 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.LinkedList;
-import java.util.LinkedHashSet;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
 
-        // Inner class for UC7 & UC8
+        // Inner class for UC7
         class Bogie {
             private String name;
             private int capacity;
@@ -20,13 +13,8 @@ public class Main {
                 this.capacity = capacity;
             }
 
-            public String getName() {
-                return name;
-            }
-
-            public int getCapacity() {
-                return capacity;
-            }
+            public String getName() { return name; }
+            public int getCapacity() { return capacity; }
         }
 
         //===== UC1 =====
@@ -128,7 +116,7 @@ public class Main {
         bogies.add(new Bogie("AC Chair", 60));
         bogies.add(new Bogie("First Class", 24));
 
-        bogies.sort(java.util.Comparator.comparingInt(Bogie::getCapacity));
+        bogies.sort(Comparator.comparingInt(Bogie::getCapacity));
 
         System.out.println("\nBogies sorted by capacity (Ascending):");
         for (Bogie b : bogies) {
@@ -154,6 +142,44 @@ public class Main {
         System.out.println("Filtered Bogies (Capacity > 60):");
         for (Map.Entry<String, Integer> entry : filteredBogies) {
             System.out.println(entry.getKey() + " -> Capacity: " + entry.getValue());
+        }
+
+        //===== UC9 =====
+        System.out.println("\n=== UC9: Group Bogies by Type (Collectors.groupingBy) ===");
+
+        class BogieType {
+            private String name;
+            private String type;
+            private int capacity;
+
+            public BogieType(String name, String type, int capacity) {
+                this.name = name;
+                this.type = type;
+                this.capacity = capacity;
+            }
+
+            public String getName() { return name; }
+            public String getType() { return type; }
+            public int getCapacity() { return capacity; }
+        }
+
+        List<BogieType> bogieList = new ArrayList<>();
+        bogieList.add(new BogieType("Sleeper", "Passenger", 72));
+        bogieList.add(new BogieType("AC Chair", "Passenger", 60));
+        bogieList.add(new BogieType("First Class", "Passenger", 24));
+        bogieList.add(new BogieType("Cargo Box", "Goods", 100));
+        bogieList.add(new BogieType("Oil Tanker", "Goods", 120));
+
+        Map<String, List<BogieType>> groupedBogies = bogieList
+                .stream()
+                .collect(java.util.stream.Collectors.groupingBy(BogieType::getType));
+
+        System.out.println("Grouped Bogies by Type:");
+        for (Map.Entry<String, List<BogieType>> entry : groupedBogies.entrySet()) {
+            System.out.println("\nType: " + entry.getKey());
+            for (BogieType b : entry.getValue()) {
+                System.out.println(b.getName() + " -> Capacity: " + b.getCapacity());
+            }
         }
     }
 }

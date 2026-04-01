@@ -192,4 +192,4 @@ public class Main {
 
         System.out.println("Total Seating Capacity of Train: " + totalSeats);
     }
-}
+}  

@@ -191,5 +191,32 @@ public class Main {
                 .reduce(0, Integer::sum);
 
         System.out.println("Total Seating Capacity of Train: " + totalSeats);
+
+        //===== UC11 =====
+        System.out.println("\n=== UC11: Validate Train ID & Cargo Code (Regex) ===");
+
+        String trainId = "TRN-1234";
+        String cargoCode = "PET-AB";
+
+        String trainPatternStr = "TRN-\\d{4}";
+        String cargoPatternStr = "PET-[A-Z]{2}";
+
+        java.util.regex.Pattern trainPattern = java.util.regex.Pattern.compile(trainPatternStr);
+        java.util.regex.Pattern cargoPattern = java.util.regex.Pattern.compile(cargoPatternStr);
+
+        java.util.regex.Matcher trainMatcher = trainPattern.matcher(trainId);
+        java.util.regex.Matcher cargoMatcher = cargoPattern.matcher(cargoCode);
+
+        if (trainMatcher.matches()) {
+            System.out.println("Train ID is VALID: " + trainId);
+        } else {
+            System.out.println("Train ID is INVALID: " + trainId);
+        }
+
+        if (cargoMatcher.matches()) {
+            System.out.println("Cargo Code is VALID: " + cargoCode);
+        } else {
+            System.out.println("Cargo Code is INVALID: " + cargoCode);
+        }
     }
-}  
+}

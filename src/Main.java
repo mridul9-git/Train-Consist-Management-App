@@ -8,16 +8,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Main{
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        class Bogie {
+            private String name;
+            private int capacity;
 
+            public Bogie(String name, int capacity) {
+                this.name = name;
+                this.capacity = capacity;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public int getCapacity() {
+                return capacity;
+            }
+        }
 //===== UC1 =====
         System.out.println("=== Train Consist Management App ===");
-        List<String> trainConsist=new ArrayList<>();
+        List<String> trainConsist = new ArrayList<>();
         System.out.println("Train consist initialized.");
-        System.out.println("Initial bogie count: "+trainConsist.size());
+        System.out.println("Initial bogie count: " + trainConsist.size());
 
 //===== UC2 =====
-        List<String> passengerBogies=new ArrayList<>();
+        List<String> passengerBogies = new ArrayList<>();
         passengerBogies.add("Sleeper");
         passengerBogies.add("AC Chair");
         passengerBogies.add("First Class");
@@ -26,14 +42,14 @@ public class Main{
         passengerBogies.remove("AC Chair");
         System.out.println("\nAfter removing AC Chair:");
         System.out.println(passengerBogies);
-        if(passengerBogies.contains("Sleeper")){
+        if (passengerBogies.contains("Sleeper")) {
             System.out.println("\nSleeper bogie exists in the train.");
         }
         System.out.println("\nFinal Passenger Bogie List:");
         System.out.println(passengerBogies);
 
 //===== UC3 =====
-        Set<String> bogieIds=new HashSet<>();
+        Set<String> bogieIds = new HashSet<>();
         bogieIds.add("BG101");
         bogieIds.add("BG102");
         bogieIds.add("BG103");
@@ -44,7 +60,7 @@ public class Main{
 
 //===== UC4 =====
         System.out.println("\n=== UC4: Train Consist Using LinkedList ===");
-        LinkedList<String> consist=new LinkedList<>();
+        LinkedList<String> consist = new LinkedList<>();
         consist.add("Engine");
         consist.add("Sleeper");
         consist.add("AC");
@@ -52,7 +68,7 @@ public class Main{
         consist.add("Guard");
         System.out.println("\nInitial Train Consist:");
         System.out.println(consist);
-        consist.add(2,"Pantry Car");
+        consist.add(2, "Pantry Car");
         System.out.println("\nAfter inserting Pantry Car at position 2:");
         System.out.println(consist);
         consist.removeFirst();
@@ -64,7 +80,7 @@ public class Main{
 
 //===== UC5 =====
         System.out.println("\n=== UC5: Train Formation Using LinkedHashSet ===");
-        LinkedHashSet<String> formation=new LinkedHashSet<>();
+        LinkedHashSet<String> formation = new LinkedHashSet<>();
         formation.add("Engine");
         formation.add("Sleeper");
         formation.add("Cargo");
@@ -75,13 +91,25 @@ public class Main{
 
 //===== UC6 =====
         System.out.println("\n=== UC6: Bogie Capacity Mapping Using HashMap ===");
-        HashMap<String,Integer> bogieCapacity=new HashMap<>();
-        bogieCapacity.put("Sleeper",72);
-        bogieCapacity.put("AC Chair",60);
-        bogieCapacity.put("First Class",24);
+        HashMap<String, Integer> bogieCapacity = new HashMap<>();
+        bogieCapacity.put("Sleeper", 72);
+        bogieCapacity.put("AC Chair", 60);
+        bogieCapacity.put("First Class", 24);
         System.out.println("\nBogie Capacity Details:");
-        for(Map.Entry<String,Integer> entry:bogieCapacity.entrySet()){
-            System.out.println(entry.getKey()+" -> Capacity: "+entry.getValue());
+        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
+            System.out.println(entry.getKey() + " -> Capacity: " + entry.getValue());
+
+
+//===== UC7 =====
+            System.out.println("\n=== UC7: Sort Bogies by Capacity (Comparator) ===");
+            List<Bogie> bogies = new ArrayList<>();
+            bogies.add(new Bogie("Sleeper", 72));
+            bogies.add(new Bogie("AC Chair", 60));
+            bogies.add(new Bogie("First Class", 24));
+            bogies.sort(java.util.Comparator.comparingInt(Bogie::getCapacity));
+            System.out.println("\nBogies sorted by capacity (Ascending):");
+            for (Bogie b : bogies) {
+                System.out.println(b.getName() + " -> Capacity: " + b.getCapacity());
+            }
         }
-    }
-}
+    }}

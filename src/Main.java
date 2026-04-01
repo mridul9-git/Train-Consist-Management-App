@@ -110,6 +110,30 @@ public class Main{
             System.out.println("\nBogies sorted by capacity (Ascending):");
             for (Bogie b : bogies) {
                 System.out.println(b.getName() + " -> Capacity: " + b.getCapacity());
+
+//===== UC8 =====
+                System.out.println("\n=== UC8: Filter Passenger Bogies Using Streams ===");
+
+
+                Map<String, Integer> bogieData = new HashMap<>();
+                bogieData.put("Sleeper", 72);
+                bogieData.put("AC Chair", 60);
+                bogieData.put("First Class", 24);
+                bogieData.put("Luxury", 80);
+
+
+                List<Map.Entry<String, Integer>> bogieListStream = new ArrayList<>(bogieData.entrySet());
+
+
+                List<Map.Entry<String, Integer>> filteredBogies = bogieListStream
+                        .stream()
+                        .filter(b -> b.getValue() > 60)
+                        .toList();
+
+
+                System.out.println("Filtered Bogies (Capacity > 60):");
+                for(Map.Entry<String, Integer> entry : filteredBogies){
+                    System.out.println(entry.getKey() + " -> Capacity: " + entry.getValue());
             }
         }
-    }}
+    }}}

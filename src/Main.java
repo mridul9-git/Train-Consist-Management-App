@@ -207,16 +207,37 @@ public class Main {
         java.util.regex.Matcher trainMatcher = trainPattern.matcher(trainId);
         java.util.regex.Matcher cargoMatcher = cargoPattern.matcher(cargoCode);
 
-        if (trainMatcher.matches()) {
-            System.out.println("Train ID is VALID: " + trainId);
-        } else {
-            System.out.println("Train ID is INVALID: " + trainId);
+        System.out.println(trainMatcher.matches() ? "Train ID VALID" : "Train ID INVALID");
+        System.out.println(cargoMatcher.matches() ? "Cargo Code VALID" : "Cargo Code INVALID");
+
+        //===== UC12 =====
+        System.out.println("\n=== UC12: Safety Compliance Check for Goods Bogies ===");
+
+        class GoodsBogie {
+            private String type;
+            private String cargo;
+
+            public GoodsBogie(String type, String cargo) {
+                this.type = type;
+                this.cargo = cargo;
+            }
+
+            public String getType() { return type; }
+            public String getCargo() { return cargo; }
         }
 
-        if (cargoMatcher.matches()) {
-            System.out.println("Cargo Code is VALID: " + cargoCode);
-        } else {
-            System.out.println("Cargo Code is INVALID: " + cargoCode);
-        }
+        List<GoodsBogie> goodsBogies = new ArrayList<>();
+        goodsBogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
+        goodsBogies.add(new GoodsBogie("Box", "Coal"));
+        goodsBogies.add(new GoodsBogie("Open", "Grain"));
+
+        boolean isSafe = goodsBogies
+                .stream()
+                .allMatch(b ->
+                        !b.getType().equals("Cylindrical") ||
+                                b.getCargo().equals("Petroleum")
+                );
+
+        System.out.println(isSafe ? "Train is SAFE" : "Train is UNSAFE");
     }
 }

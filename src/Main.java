@@ -319,5 +319,55 @@ public class Main {
         } catch (InvalidCapacityException e) {
             System.out.println("Exception: " + e.getMessage());
         }
+//===== UC15 =====
+        System.out.println("\n=== UC15: Safe Cargo Assignment Using try-catch-finally ===");
+
+
+        class CargoSafetyException extends RuntimeException {
+            public CargoSafetyException(String message) {
+                super(message);
+            }
+        }
+
+
+        class SafeGoodsBogie {
+            private String type;
+            private String cargo;
+
+            public SafeGoodsBogie(String type) {
+                this.type = type;
+            }
+
+            public void assignCargo(String cargo) {
+                try {
+                    // Unsafe condition
+                    if (type.equals("Rectangular") && cargo.equals("Petroleum")) {
+                        throw new CargoSafetyException("Unsafe: Cannot assign Petroleum to Rectangular bogie");
+                    }
+
+                    this.cargo = cargo;
+                    System.out.println("Cargo assigned successfully: " + cargo);
+
+                } catch (CargoSafetyException e) {
+                    System.out.println("Error: " + e.getMessage());
+
+                } finally {
+                    System.out.println("Cargo assignment attempt completed for " + type + " bogie");
+                }
+            }
+
+            public String getCargo() {
+                return cargo;
+            }
+        }
+
+
+        SafeGoodsBogie g1 = new SafeGoodsBogie("Cylindrical");
+        g1.assignCargo("Petroleum"); // ✅ valid
+
+        SafeGoodsBogie g2 = new SafeGoodsBogie("Rectangular");
+        g2.assignCargo("Petroleum"); // ❌ invalid but handled
+
+        System.out.println("Program continues after handling exception...");
     }
 }

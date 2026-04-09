@@ -369,5 +369,38 @@ public class Main {
         g2.assignCargo("Petroleum"); // ❌ invalid but handled
 
         System.out.println("Program continues after handling exception...");
+//===== UC16 =====
+        System.out.println("\n=== UC16: Bubble Sort on Passenger Bogie Capacities ===");
+
+
+        int[] capacities = {72, 56, 24, 70, 60};
+
+
+        System.out.println("Original Capacities:");
+        for (int c : capacities) {
+            System.out.print(c + " ");
+        }
+        System.out.println();
+
+
+        int n = capacities.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (capacities[j] > capacities[j + 1]) {
+                    // swap
+                    int temp = capacities[j];
+                    capacities[j] = capacities[j + 1];
+                    capacities[j + 1] = temp;
+                }
+            }
+        }
+
+
+        System.out.println("Sorted Capacities:");
+        for (int c : capacities) {
+            System.out.print(c + " ");
+        }
+        System.out.println();
+
     }
 }

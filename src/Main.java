@@ -441,5 +441,40 @@ public class Main {
         } else {
             System.out.println("Bogie ID " + searchKey + " NOT FOUND.");
         }
+//===== UC19 =====
+        System.out.println("\n=== UC19: Binary Search for Bogie ID ===");
+
+
+        String[] sortedBogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
+
+
+        String key = "BG309";
+
+
+        int left = 0;
+        int right = sortedBogieIds.length - 1;
+        boolean foundBinary = false;
+
+        while (left <= right) {
+            int mid = (left + right) / 2;
+
+            int compare = sortedBogieIds[mid].compareTo(key);
+
+            if (compare == 0) {
+                foundBinary = true;
+                break;
+            } else if (compare < 0) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+
+        if (foundBinary) {
+            System.out.println("Bogie ID " + key + " FOUND using Binary Search.");
+        } else {
+            System.out.println("Bogie ID " + key + " NOT FOUND.");
+        }
     }
 }

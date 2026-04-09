@@ -417,5 +417,29 @@ public class Main {
 
         System.out.println("Sorted Bogie Names:");
         System.out.println(Arrays.toString(bogieNames));
+        //===== UC18 =====
+        System.out.println("\n=== UC18: Linear Search for Bogie ID ===");
+
+
+        String[] bogieIdsArray = {"BG101", "BG205", "BG309", "BG412", "BG550"};
+
+
+        String searchKey = "BG309";
+
+        boolean found = false;
+
+        for (String id : bogieIdsArray) {
+            if (id.equals(searchKey)) {
+                found = true;
+                break; // stop immediately when found
+            }
+        }
+
+
+        if (found) {
+            System.out.println("Bogie ID " + searchKey + " FOUND in the train.");
+        } else {
+            System.out.println("Bogie ID " + searchKey + " NOT FOUND.");
+        }
     }
 }

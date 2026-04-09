@@ -476,5 +476,38 @@ public class Main {
         } else {
             System.out.println("Bogie ID " + key + " NOT FOUND.");
         }
+//===== UC20 =====
+        System.out.println("\n=== UC20: Exception Handling During Search Operations ===");
+
+// Bogie array (try empty first to test exception)
+        String[] searchBogieIds = {};  // ❌ empty case
+// String[] searchBogieIds = {"BG101", "BG205", "BG309"}; // ✅ valid case
+
+        String searchKeyUC20 = "BG101";
+
+        try {
+            // Fail-fast validation
+            if (searchBogieIds.length == 0) {
+                throw new IllegalStateException("No bogies available for search!");
+            }
+
+            // Linear search (can reuse UC18 logic)
+            boolean foundUC20 = false;
+            for (String id : searchBogieIds) {
+                if (id.equals(searchKeyUC20)) {
+                    foundUC20 = true;
+                    break;
+                }
+            }
+
+            if (foundUC20) {
+                System.out.println("Bogie ID " + searchKeyUC20 + " FOUND.");
+            } else {
+                System.out.println("Bogie ID " + searchKeyUC20 + " NOT FOUND.");
+            }
+
+        } catch (IllegalStateException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
     }
 }
